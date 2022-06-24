@@ -28,6 +28,11 @@
                     <td><button mat-raised-button (click)="updateFile(file.imageName)">Update image</button></td>
                     <td><button mat-raised-button (click)="deleteFile(file.imageName)">Delete</button></td>
                   </tr>
+                  <tr *ngIf="fileList.length <= 0">
+                    <td colspan="3">
+                      <h3>Không tìm thấy dữ liệu</h3>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
