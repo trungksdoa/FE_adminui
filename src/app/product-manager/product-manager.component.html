@@ -53,6 +53,11 @@
           </td>
           <td></td>
         </tr>
+        <tr *ngIf="products.length <= 0">
+          <td colspan="9">
+            <h3>Không tìm thấy dữ liệu</h3>
+          </td>
+        </tr>
       </tbody>
     </table>
 

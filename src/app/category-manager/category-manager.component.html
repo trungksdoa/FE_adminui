@@ -34,6 +34,11 @@
                      <a (click)="onOpenModal(category, 'delete')" class="btn btn-danger tooltips" data-placement="top" data-original-title="Delete">Delete</a>
                   </td>
               </tr>
+              <tr *ngIf="categorys.length <= 0">
+                <td colspan="4">
+                  <h3>Không tìm thấy dữ liệu</h3>
+                </td>
+              </tr>
           </tbody>
       </table>
 
