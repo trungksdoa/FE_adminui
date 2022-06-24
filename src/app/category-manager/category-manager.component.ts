@@ -90,7 +90,6 @@ export class CategoryManagerComponent implements OnInit {
   }
 
   public onOpenModal(cate: Category, mode: string): void {
-    $("#addEmployeeModal").modal()
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
     button.type = 'button';
