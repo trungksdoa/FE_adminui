@@ -12,7 +12,7 @@ import * as $ from 'jquery';
 })
 export class CategoryManagerComponent implements OnInit {
 
-  
+
   public categorys: Category[];
   public editCate: Category;
   public deleteCate: Category;
@@ -90,25 +90,24 @@ export class CategoryManagerComponent implements OnInit {
   }
 
   public onOpenModal(cate: Category, mode: string): void {
-    $("#addEmployeeModal").modal()
-    // const container = document.getElementById('main-container');
-    // const button = document.createElement('button');
-    // button.type = 'button';
-    // button.style.display = 'none';
-    // button.setAttribute('data-toggle', 'modal');
-    // if (mode === 'add') {
-    //   button.setAttribute('data-target', '#addEmployeeModal');
-    // }
-    // if (mode === 'edit') {
-    //   this.editCate = cate;
-    //   button.setAttribute('data-target', '#updateEmployeeModal');
-    // }
-    // if (mode === 'delete') {
-    //   this.deleteCate = cate;
-    //   button.setAttribute('data-target', '#deleteEmployeeModal');
-    // }
-    // container.appendChild(button);
-    // button.click();
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'add') {
+      button.setAttribute('data-target', '#addEmployeeModal');
+    }
+    if (mode === 'edit') {
+      this.editCate = cate;
+      button.setAttribute('data-target', '#updateEmployeeModal');
+    }
+    if (mode === 'delete') {
+      this.deleteCate = cate;
+      button.setAttribute('data-target', '#deleteEmployeeModal');
+    }
+    container.appendChild(button);
+    button.click();
   }
 
 }
