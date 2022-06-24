@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 import { CategoryService } from "./api/category/category.service";
 import { ProductService } from "./api/product/product.service";
@@ -29,6 +28,8 @@ import { ProductManagerComponent } from "./product-manager/product-manager.compo
 import { SharedService, DialogService } from "./service";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { CategoryManagerComponent } from './category-manager/category-manager.component';
+import { SpinnerService } from './service/spinner.service';
+import { httpInterceptProviders } from './http';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { CategoryManagerComponent } from './category-manager/category-manager.co
   ],
   imports: [
     BrowserModule,
-    
+
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
@@ -58,9 +59,10 @@ import { CategoryManagerComponent } from './category-manager/category-manager.co
     ReactiveFormsModule,
     NgSelectModule,
     NgxSkeletonLoaderModule,
-   
+
   ],
   providers: [
+    httpInterceptProviders,
     CategoryService,
     ProductService,
     CartService,
@@ -69,7 +71,8 @@ import { CategoryManagerComponent } from './category-manager/category-manager.co
     UserService,
     CityService,
     BannerService,
-    DialogService
+    DialogService,
+    SpinnerService
   ],
   bootstrap: [AppComponent,CategoryManagerComponent]
 })
