@@ -6,7 +6,7 @@ import { Category } from 'src/app/api/category/category'
 import { CategoryService } from 'src/app/api/category/category.service'
 import { Product } from 'src/app/api/product/product'
 import { ProductService } from 'src/app/api/product/product.service'
-import { SharedService } from 'src/app/service'
+import { SharedService, ToastsService } from 'src/app/service'
 
 @Component({
   selector: 'app-add-product',
@@ -37,6 +37,7 @@ export class AddProductComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private sharedService: SharedService,
+    private toast: ToastsService,
     private dialogRef: MatDialogRef<AddProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { data: Product; type: string }
   ) {}
@@ -154,30 +155,25 @@ export class AddProductComponent implements OnInit {
         if (this.formType === 'add') {
           this.productService.createProductWithFileUpload(formData).subscribe(
             (response: Product) => {
-              console.log(response)
+              this.toast.showSuccess('Thành công')
 
-              setTimeout(() => {
-                this.sharedService.submitFormProduct(response)
-                this.dialogRef.close()
-                this.clearForm()
-              }, 100)
-
+              this.sharedService.submitFormProduct(response)
+              this.dialogRef.close()
+              this.clearForm()
             },
             (error: HttpErrorResponse) => {
-              alert(error.message)
+              this.toast.showError('Thất bại')
             }
           )
         } else {
           this.productService.updateProductWithFileUpload(formData).subscribe(
             (response: Product) => {
-              console.log(response)
-              setTimeout(() => {
-                this.sharedService.submitFormProduct(response)
-                this.dialogRef.close()
-              }, 500)
+              this.toast.showSuccess('Thành công')
+              this.sharedService.submitFormProduct(response)
+              this.dialogRef.close()
             },
             (error: HttpErrorResponse) => {
-              alert(error.message)
+              this.toast.showError('Thất bại')
             }
           )
         }

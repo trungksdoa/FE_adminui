@@ -23,7 +23,7 @@
               <span class="text-dark">{{username}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end" *ngIf="username !=='Chào các cụ'">
-          
+
               <a class="dropdown-item" (click)="logout()">Log out</a>
             </div>
           </li>
@@ -36,11 +36,13 @@
         <div class="row">
           <div class="col-xl-12 col-xxl-12 d-flex">
             <router-outlet></router-outlet>
+            <lib-ng-toast></lib-ng-toast>
+            <app-spinner></app-spinner>
           </div>
         </div>
       </div>
     </main>
 
-    
+
   </div>
 </div>

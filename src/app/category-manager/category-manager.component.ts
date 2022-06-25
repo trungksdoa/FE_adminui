@@ -5,6 +5,7 @@ import { Category } from '../api/category/category';
 import { CategoryService } from '../api/category/category.service';
 
 import * as $ from 'jquery';
+import { ToastsService } from '../service';
 @Component({
   selector: 'app-category-manager',
   templateUrl: './category-manager.component.html',
@@ -16,7 +17,7 @@ export class CategoryManagerComponent implements OnInit {
   public categorys: Category[];
   public editCate: Category;
   public deleteCate: Category;
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService,private toastService: ToastsService) {
 
   }
 
@@ -31,7 +32,7 @@ export class CategoryManagerComponent implements OnInit {
         console.log(this.categorys);
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastService.showError("Thất bại")
       }
     );
   }
@@ -39,13 +40,12 @@ export class CategoryManagerComponent implements OnInit {
     document.getElementById('add-employee-form').click();
     this.categoryService.addCategory(addForm.value).subscribe(
       (response: Category) => {
-        console.log(response);
+        this.toastService.showSuccess("Thành công")
         this.getAllCategory();
         addForm.reset();
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
-        addForm.reset();
+        this.toastService.showError("Thất bại")
       }
     );
   }
@@ -54,11 +54,11 @@ export class CategoryManagerComponent implements OnInit {
 
     this.categoryService.updateCategory(cate).subscribe(
       (response: Category) => {
-        console.log(response);
+        this.toastService.showSuccess("Thành công")
         this.getAllCategory();
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastService.showError("Thất bại")
       }
     );
   }
@@ -66,11 +66,11 @@ export class CategoryManagerComponent implements OnInit {
   public onDeleteCategory(cateid: number): void {
     this.categoryService.deleteCategory(cateid).subscribe(
       (response: void) => {
-        console.log(response);
+        this.toastService.showSuccess("Thành công")
         this.getAllCategory();
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        this.toastService.showError("Thất bại")
       }
     );
   }

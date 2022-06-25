@@ -3,7 +3,7 @@ import { MatBottomSheet } from "@angular/material/bottom-sheet";
 import { MatDialog } from "@angular/material/dialog";
 import { OrderService } from "src/app/api/service/order.service";
 import { orderManagement } from "src/app/model/Order";
-import { SharedService } from "src/app/service";
+import { SharedService, ToastsService } from "src/app/service";
 import { OrderDetailComponent } from "./order-detail/order-detail.component";
 
 
@@ -27,7 +27,8 @@ export class OrderManagerComponent implements OnInit {
     private service: OrderService,
     private _sharedService: SharedService,
     private _bottomSheet: MatBottomSheet,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toast: ToastsService
   ) {
     this.sharedService = _sharedService
     this.service.getorders().subscribe(items => {
@@ -63,6 +64,7 @@ export class OrderManagerComponent implements OnInit {
         .forEach(item => {
           item.status = data.status
         })
+        this.toast.showSuccess("Thành công")
     })
   }
 

@@ -1,4 +1,4 @@
-import { SharedService ,DialogService} from 'src/app/service'
+import { SharedService ,DialogService, ToastsService} from 'src/app/service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, Input, OnInit, ViewChild } from '@angular/core'
 import { Validators, FormBuilder, NgForm } from '@angular/forms'
@@ -40,7 +40,8 @@ export class ProductManagerComponent implements OnInit {
     private productService: ProductService,
     private categoryService: CategoryService,
     private dialogService: DialogService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private toast: ToastsService
   ) {}
   ngOnInit (): void {
     this.sharedService.invokeSendDataAfterSubmit.subscribe((data: Product) => {
@@ -93,7 +94,7 @@ export class ProductManagerComponent implements OnInit {
         this.getAllProduct()
       },
       (error: HttpErrorResponse) => {
-        alert(error.message)
+        this.toast.showError("Không thể xóa khi, vui lòng kiểm trả lại")
       }
     )
   }

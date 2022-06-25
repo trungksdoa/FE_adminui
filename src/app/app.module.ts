@@ -2,6 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgToastModule } from "ng-angular-popup";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
@@ -25,12 +26,12 @@ import { LoginFormComponent } from "./login-form/login-form.component";
 import { MaterialExampleModule } from "./module/material.module";
 import { AddProductComponent } from "./product-manager/add-product/add-product.component";
 import { ProductManagerComponent } from "./product-manager/product-manager.component";
-import { SharedService, DialogService } from "./service";
+import { SharedService, DialogService, ToastsService } from "./service";
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { CategoryManagerComponent } from './category-manager/category-manager.component';
 import { SpinnerService } from './service/spinner.service';
 import { httpInterceptProviders } from './http';
-import { CatagoryDialogComponent } from './catagory-dialog/catagory-dialog.component';
+import { SpinnerComponent } from './feature/spinner/spinner.component';
 
 
 @NgModule({
@@ -47,11 +48,11 @@ import { CatagoryDialogComponent } from './catagory-dialog/catagory-dialog.compo
     LoginFormComponent,
     UserManagerComponent,
     CategoryManagerComponent,
-    CatagoryDialogComponent
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
-
+    NgToastModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
@@ -74,7 +75,8 @@ import { CatagoryDialogComponent } from './catagory-dialog/catagory-dialog.compo
     CityService,
     BannerService,
     DialogService,
-    SpinnerService
+    SpinnerService,
+    ToastsService
   ],
   bootstrap: [AppComponent,CategoryManagerComponent]
 })

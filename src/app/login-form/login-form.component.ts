@@ -72,6 +72,7 @@ export class LoginFormComponent implements OnInit {
           form.reset()
         },
         error => {
+          console.log(error.error.message);
           this.toast.showError(error.error.message)
         }
       )
