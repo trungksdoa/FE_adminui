@@ -30,6 +30,7 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
 import { CategoryManagerComponent } from './category-manager/category-manager.component';
 import { SpinnerService } from './service/spinner.service';
 import { httpInterceptProviders } from './http';
+import { CatagoryDialogComponent } from './catagory-dialog/catagory-dialog.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { httpInterceptProviders } from './http';
     UpdateBannerFormComponent,
     LoginFormComponent,
     UserManagerComponent,
-    CategoryManagerComponent
+    CategoryManagerComponent,
+    CatagoryDialogComponent
   ],
   imports: [
     BrowserModule,
