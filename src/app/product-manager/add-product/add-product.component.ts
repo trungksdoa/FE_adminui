@@ -60,7 +60,7 @@ export class AddProductComponent implements OnInit {
     this.imageDataUrl =
       this.productContent.imageurl.length === 0
         ? 'https://previews.123rf.com/images/bonumopus/bonumopus1603/bonumopus160300089/53156323-empty-transparent-background-with-gradient-opacity-.jpg'
-        : 'http://localhost:8081/image/' + this.productContent.imageurl
+        : '"https://serveramazon2022.herokuapp.com/api/v2/image/' + this.productContent.imageurl
 
     this.getAllCategory()
   }
