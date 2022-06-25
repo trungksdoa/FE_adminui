@@ -97,7 +97,7 @@ export class BannerManagerComponent implements OnInit, OnChanges {
   }
 
   setImage (name: string) {
-    return `http://localhost:8081/image/${name}?${new Date().getTime()}`
+    return `https://serveramazon2022.herokuapp.com/api/v2/image/${name}?${new Date().getTime()}`
   }
 
   clearFile () {
