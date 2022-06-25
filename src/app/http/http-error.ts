@@ -18,6 +18,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    this.spinnerServer.requestStarted()
     return this.handler(next, req)
   }
   handler (next: HttpHandler, request: HttpRequest<any>) {
