@@ -18,7 +18,7 @@ export class UpdateBannerFormComponent implements OnInit {
   ) {}
   @ViewChild('inputImage', { static: false }) inputImage
   ngOnInit (): void {
-    this.imageDataUrl = `http://localhost:8081/image/${this.fileName}?${new Date().getTime()}`
+    this.imageDataUrl = `"https://serveramazon2022.herokuapp.com/api/v2/image/${this.fileName}?${new Date().getTime()}`
   }
   selectFiles (): void {
     const target = this.inputImage.nativeElement
