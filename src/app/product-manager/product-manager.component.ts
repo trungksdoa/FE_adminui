@@ -65,6 +65,8 @@ export class ProductManagerComponent implements OnInit {
   getAllProduct (): void {
     this.productService.getAllProduct().subscribe(
       (response: Product[]) => {
+
+        console.log(response);
         this.isLoading = true
         this.products = response
       },
@@ -78,7 +80,6 @@ export class ProductManagerComponent implements OnInit {
   getAllCategory (): void {
     this.categoryService.getAllCategory().subscribe(
       (response: Category[]) => {
-        this.categorys = response
         console.log(this.categorys)
       },
       (error: HttpErrorResponse) => {

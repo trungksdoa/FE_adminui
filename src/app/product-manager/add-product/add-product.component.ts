@@ -149,7 +149,7 @@ export class AddProductComponent implements OnInit {
       this.isLoading = true
       this.failed = false
       const formData: any = new FormData()
-
+      this.productContent.imageurl = null;
       this.urlToObject().then(file => {
         formData.append('product', JSON.stringify(this.productContent))
         formData.append('image', file)

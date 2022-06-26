@@ -7,8 +7,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarColor02">
     <form class="form-inline my-2 my-lg-0">
-      <input type="search" (ngModelChange)="searchProduct(key.value)" #key="ngModel" ngModel name="key"
-        id="searchName" class="form-control mr-sm-2" placeholder="Search product..." required>
+      <input type="search" (ngModelChange)="searchProduct(key.value)" #key="ngModel" ngModel name="key" id="searchName"
+        class="form-control mr-sm-2" placeholder="Search product..." required>
     </form>
   </div>
 </nav>
@@ -37,7 +37,7 @@
       <tbody>
         <tr *ngFor="let product of products">
 
-          <td><img src="{{product.imageurl.data}}"alt="" border=3 height=100 width=100></td>
+          <td><img src="data:{{product.imageurl.type}};base64,{{product.imageurl.data}}" alt="" border=3 height=100 width=100></td>
 
           <td> <button mat-button>{{ product.name }}</button> </td>
           <td><button mat-button>{{ product.catagory ? product.catagory.name: "không có danh mục"}}</button> </td>
