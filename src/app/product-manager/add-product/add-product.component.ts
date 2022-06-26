@@ -57,11 +57,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit (): void {
     this.formType = this.data.type
     this.productContent = this.data.data
-    this.imageDataUrl =
-      this.productContent.imageurl.length === 0
-        ? 'https://previews.123rf.com/images/bonumopus/bonumopus1603/bonumopus160300089/53156323-empty-transparent-background-with-gradient-opacity-.jpg'
-        : '"https://serveramazon2022.herokuapp.com/api/v2/image/' + this.productContent.imageurl
-
+    this.imageDataUrl = this.productContent.imageurl.data
     this.getAllCategory()
   }
 
@@ -127,7 +123,12 @@ export class AddProductComponent implements OnInit {
       id: 0,
       name: '',
       description: '',
-      imageurl: '',
+      imageurl: {
+        id:'',
+        name:'',
+        type:'',
+        data:''
+      },
       price: 0,
       createdAt: undefined,
       updatedAt: undefined,
