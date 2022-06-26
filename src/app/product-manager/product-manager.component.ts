@@ -108,4 +108,17 @@ export class ProductManagerComponent implements OnInit {
       AddProductComponent
     )
   }
+  public searchProduct(key: string): void {
+    console.log(key);
+    const results: Product[] = [];
+    for (const product of this.products) {
+      if (product.name.toLowerCase().indexOf(key.toLowerCase()) !== -1){
+        results.push(product);
+      }
+    }
+    this.products = results;
+    if (results.length === 0 || !key) {
+      this.getAllProduct();
+    }
+  }
 }
