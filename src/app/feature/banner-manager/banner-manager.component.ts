@@ -68,14 +68,11 @@ export class BannerManagerComponent implements OnInit, OnChanges {
             const msg = 'Uploaded the file successfully: ' + file.name
             this.message.push(msg)
 
-            setTimeout(() => {
-              this.message = []
-            }, 1500)
+            this.message = []
             this.getFiles()
           }
         },
         error: (err: any) => {
-          console.log(err)
           this.progressInfos[idx].value = 0
           const msg = 'Could not upload the file: ' + file.name
           this.message.push(msg)
@@ -89,7 +86,6 @@ export class BannerManagerComponent implements OnInit, OnChanges {
     this.message = []
 
     if (this.selectedFiles) {
-      console.log(this.selectedFiles)
       for (let i = 0; i < this.selectedFiles.length; i++) {
         this.upload(i, this.selectedFiles[i])
       }
@@ -101,7 +97,6 @@ export class BannerManagerComponent implements OnInit, OnChanges {
   }
 
   clearFile () {
-    // this.selectedFiles = null;
     this.imageDataUrl =
       'https://previews.123rf.com/images/bonumopus/bonumopus1603/bonumopus160300089/53156323-empty-transparent-background-with-gradient-opacity-.jpg'
   }
