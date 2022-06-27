@@ -51,15 +51,15 @@ export class ProductManagerComponent implements OnInit {
     this.filterArray.push(data)
      
       } else {
-        this.filterArray=
-        this.products
+        
+        this.filterArray
           .filter(item => item.id === data.id)
           .map(preData => {
             preData = data
             this.timeStamp = new Date().getTime()
             return preData
           })
-         
+          
       }
     })
 
