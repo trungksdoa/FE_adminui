@@ -73,8 +73,6 @@ export class ProductManagerComponent implements OnInit {
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
-          element.createAt = new Date(element.createAt).toLocaleDateString()
-          element.lastUpdated = new Date(element.lastUpdated).toLocaleDateString()
         }
         this.filterArray = response
         this.products = response
