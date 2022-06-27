@@ -48,7 +48,7 @@ export class ProductManagerComponent implements OnInit {
       let index = this.products.findIndex(item => item.id === data.id)
       
       if (index == -1) {
-        this.products.push(data)
+        this.getAllProduct()
       } else {
         this.products
           .filter(item => item.id === data.id)
