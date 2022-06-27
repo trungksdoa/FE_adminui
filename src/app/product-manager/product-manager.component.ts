@@ -47,14 +47,14 @@ export class ProductManagerComponent implements OnInit {
     this.sharedService.invokeSendDataAfterSubmit.subscribe((data: Product) => {
       let index = this.products.findIndex(item => item.id === data.id)
       if (index == -1) {
-        data.createAt = new Date(data.createAt).toLocaleString()
+        // data.createAt = new Date(data.createAt).toUTCString()
         this.products.push(data)
       } else {
         this.products
           .filter(item => item.id === data.id)
           .map(preData => {
             preData = data
-            data.lastUpdated = new Date(data.lastUpdated).toLocaleString()
+            // data.lastUpdated = new Date(data.lastUpdated).toUTCString()
             this.timeStamp = new Date().getTime()
             // preData.imageurl = this.getLinkPicture(data.imageurl)
             // console.log(preData.imageurl);
@@ -73,10 +73,10 @@ export class ProductManagerComponent implements OnInit {
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
-          element.createAt = new Date(element.createAt).toLocaleString()
-          if(element.lastUpdated!=undefined){
-            element.lastUpdated = new Date(element.lastUpdated).toLocaleString()
-          }
+          // element.createAt = new Date(element.createAt).toUTCString()
+          // if(element.lastUpdated!=undefined){
+          //   element.lastUpdated = new Date(element.lastUpdated).toUTCString()
+          // }
        
         }
         this.filterArray = response
