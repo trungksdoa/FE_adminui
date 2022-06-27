@@ -57,6 +57,7 @@ export class ProductManagerComponent implements OnInit {
             this.timeStamp = new Date().getTime()
             return preData
           })
+          this.getAllProduct()
       }
     })
 
