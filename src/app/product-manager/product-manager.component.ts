@@ -46,7 +46,7 @@ export class ProductManagerComponent implements OnInit {
   ngOnInit (): void {
     this.sharedService.invokeSendDataAfterSubmit.subscribe((data: Product) => {
       let index = this.products.findIndex(item => item.id === data.id)
-      this.products.push(data)
+      
       if (index == -1) {
         this.products.push(data)
       } else {
@@ -55,6 +55,7 @@ export class ProductManagerComponent implements OnInit {
           .map(preData => {
             preData = data
             this.timeStamp = new Date().getTime()
+            this.products.push(data)
             return preData
           })
       }
