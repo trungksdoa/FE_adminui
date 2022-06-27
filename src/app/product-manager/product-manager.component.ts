@@ -50,6 +50,7 @@ export class ProductManagerComponent implements OnInit {
       if (index == -1) {
         this.getAllProduct()
       } else {
+        this.filterArray=
         this.products
           .filter(item => item.id === data.id)
           .map(preData => {
@@ -57,7 +58,7 @@ export class ProductManagerComponent implements OnInit {
             this.timeStamp = new Date().getTime()
             return preData
           })
-          this.getAllProduct()
+         
       }
     })
 
