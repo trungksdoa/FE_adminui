@@ -91,12 +91,13 @@
                 </div>
                 <div class="form-group">
                </div>
+                <input type="hidden" ngModel="{{editCate?.createAt}}" name="createAt" class="form-control" id="createAt" placeholder="createAt">
                 <input type="hidden" ngModel="{{editCate?.id}}" name="id" class="form-control" id="id" placeholder="Email">
 
 
                 <div class="modal-footer">
                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button (click)="onUpdateCategory(editForm)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                   <button (click)="onUpdateCategory(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
                 </div>
              </form>
           </div>
