@@ -73,10 +73,10 @@ export class ProductManagerComponent implements OnInit {
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
-          element.createAt = new Date(element.createAt).toLocaleDateString()
-          if(element.lastUpdated!=undefined){
-            element.lastUpdated = new Date(element.lastUpdated).toLocaleDateString()
-          }
+          // element.createAt = new Date(element.createAt).toLocaleDateString()
+          // if(element.lastUpdated!=undefined){
+          //   element.lastUpdated = new Date(element.lastUpdated).toLocaleDateString()
+          // }
        
         }
         this.filterArray = response
