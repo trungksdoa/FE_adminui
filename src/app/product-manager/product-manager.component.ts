@@ -55,7 +55,6 @@ export class ProductManagerComponent implements OnInit {
           .map(preData => {
             preData = data
             this.timeStamp = new Date().getTime()
-            this.products.push(data)
             return preData
           })
       }
