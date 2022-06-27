@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" style="color:white;">Quản lý danh mục</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,16 +26,16 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let category of categorys" >
+              <tr *ngFor="let category of filterArray" >
                   <td> {{ category.name }} </td>
-                  <td> {{ category.createdAt }} </td>
-                  <td> {{ category.updatedAt }} </td>
+                  <td> {{ category.createAt }} </td>
+                  <td> {{ category.lastUpdated }} </td>
                   <td>
                      <a (click)="onOpenModal(category, 'edit')" class="btn btn-warning tooltips" data-placement="top" data-original-title="Edit">Edit </a>
                      <a (click)="onOpenModal(category, 'delete')" class="btn btn-danger tooltips" data-placement="top" data-original-title="Delete">Delete</a>
                   </td>
               </tr>
-              <tr *ngIf="categorys.length <= 0">
+              <tr *ngIf="filterArray.length <= 0">
                 <td colspan="5">
                   <h3>Không tìm thấy dữ liệu</h3>
                 </td>
@@ -90,7 +91,7 @@
                 </div>
                 <div class="form-group">
 
-                  <input type="hidden" ngModel="{{editCate?.createdAt}}" name="createdAt" class="form-control" id="createdAt" aria-describedby="emailHelp" placeholder="createdAt">
+                  <input type="hidden" ngModel="{{editCate?.createAt}}" name="createdAt" class="form-control" id="createdAt" aria-describedby="emailHelp" placeholder="createdAt">
                </div>
                 <input type="hidden" ngModel="{{editCate?.id}}" name="id" class="form-control" id="id" placeholder="Email">
 
@@ -126,11 +127,3 @@
     </div>
   </div>
 
-
-  <!-- Notification for no employees -->
-  <div *ngIf="categorys?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
-  <div class="alert alert-info" role="alert">
-    <h4 class="alert-heading">NO Category!</h4>
-    <p>No Category were found.</p>
-  </div>
-  </div>

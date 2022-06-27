@@ -4,9 +4,10 @@ table {
   width: 100%;
 }
 
-td #description{
+td #text-wrapper{
   /* border: 1px solid black; */
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
 }
+

@@ -1,4 +1,4 @@
-import { SharedService ,DialogService, ToastsService} from 'src/app/service'
+import { SharedService, DialogService, ToastsService } from 'src/app/service'
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, Input, OnInit, ViewChild } from '@angular/core'
 import { Validators, FormBuilder, NgForm } from '@angular/forms'
@@ -20,25 +20,21 @@ export class ProductManagerComponent implements OnInit {
   failed: boolean
   categorys: Category[]
   newDate: any = new Date().getTime()
-
+  filterArray: Product[] = []
+  timeStamp: any = new Date().getTime()
   initializeValue = {
     id: 0,
     name: '',
     description: '',
     imageurl: '',
     price: 0,
-    createdAt: new Date(),
-    updatedAt: new Date(),
     catagory: {
       id: 0,
       name: '',
-      createdAt: new Date(),
-      updatedAt: new Date()
     }
   }
   constructor (
     private productService: ProductService,
-    private categoryService: CategoryService,
     private dialogService: DialogService,
     private sharedService: SharedService,
     private toast: ToastsService
@@ -47,27 +43,36 @@ export class ProductManagerComponent implements OnInit {
     this.sharedService.invokeSendDataAfterSubmit.subscribe((data: Product) => {
       let index = this.products.findIndex(item => item.id === data.id)
       if (index == -1) {
+        // data.createAt = new Date(data.createdAt).toLocaleDateString()
         this.products.push(data)
       } else {
         this.products
           .filter(item => item.id === data.id)
           .map(preData => {
             preData = data
+            // data.updatedAt = new Date(data.updatedAt).toLocaleDateString()
+            this.timeStamp = new Date().getTime()
+            // preData.imageurl = this.getLinkPicture(data.imageurl)
+            // console.log(preData.imageurl);
             return preData
           })
       }
     })
 
     this.getAllProduct()
-    this.getAllCategory()
   }
   @Input() response: any
   getAllProduct (): void {
     this.productService.getAllProduct().subscribe(
       (response: Product[]) => {
-
-        console.log(response);
+         console.log(response);
         this.isLoading = true
+        for (let i = 0; i < response.length; i++) {
+          const element = response[i]
+          // element.createdAt = new Date(element.createdAt).toLocaleDateString()
+          // element.updatedAt = new Date(element.updatedAt).toLocaleDateString()
+        }
+        this.filterArray = response
         this.products = response
       },
       (error: HttpErrorResponse) => {
@@ -77,25 +82,14 @@ export class ProductManagerComponent implements OnInit {
     )
   }
 
-  getAllCategory (): void {
-    this.categoryService.getAllCategory().subscribe(
-      (response: Category[]) => {
-        console.log(this.categorys)
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message)
-      }
-    )
-  }
-
   onDeleteProduct (cateid: number): void {
     this.productService.deleteProduct(cateid).subscribe(
       (response: void) => {
-        console.log(response)
+        this.toast.showSuccess('Xóa thành công')
         this.getAllProduct()
       },
       (error: HttpErrorResponse) => {
-        this.toast.showError("Không thể xóa khi, vui lòng kiểm trả lại")
+        this.toast.showError('Không thể xóa khi, vui lòng kiểm trả lại')
       }
     )
   }
@@ -109,17 +103,15 @@ export class ProductManagerComponent implements OnInit {
       AddProductComponent
     )
   }
-  public searchProduct(key: string): void {
-    console.log(key);
-    const results: Product[] = [];
-    for (const product of this.products) {
-      if (product.name.toLowerCase().indexOf(key.toLowerCase()) !== -1){
-        results.push(product);
-      }
+
+  searchProduct (key: string) {
+    this.filterArray = this.sharedService.searchAny(this.products, key)
+  }
+
+  public getLinkPicture (linkPicture: any) {
+    if (this.timeStamp) {
+      return linkPicture + '?' + this.timeStamp
     }
-    this.products = results;
-    if (results.length === 0 || !key) {
-      this.getAllProduct();
-    }
+    return linkPicture
   }
 }

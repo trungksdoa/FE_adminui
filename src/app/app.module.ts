@@ -78,6 +78,6 @@ import { SpinnerComponent } from './feature/spinner/spinner.component';
     SpinnerService,
     ToastsService
   ],
-  bootstrap: [AppComponent,CategoryManagerComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

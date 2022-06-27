@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { timeout } from 'rxjs'
 import { Category } from 'src/app/api/category/category'
 import { CategoryService } from 'src/app/api/category/category.service'
 import { Product } from 'src/app/api/product/product'
@@ -57,7 +56,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit (): void {
     this.formType = this.data.type
     this.productContent = this.data.data
-    this.imageDataUrl = this.productContent.imageurl.data
+    this.imageDataUrl = this.productContent.imageurl
     this.getAllCategory()
   }
 
@@ -123,37 +122,31 @@ export class AddProductComponent implements OnInit {
       id: 0,
       name: '',
       description: '',
-      imageurl: {
-        id:'',
-        name:'',
-        type:'',
-        data:''
-      },
+      imageurl: '',
       price: 0,
-      createdAt: undefined,
-      updatedAt: undefined,
+      createAt:undefined,
+      lastUpdated:undefined,
       catagory: {
         id: 0,
         name: '',
-        createdAt: undefined,
-        updatedAt: undefined
+        createAt:undefined,
+        lastUpdated:undefined
       }
     }
   }
 
   onSubmit = () => {
-    console.log(
-      Object.keys(this.formValidate(this.productContent)).length === 0
-    )
+
     if (Object.keys(this.formValidate(this.productContent)).length === 0) {
       this.isLoading = true
       this.failed = false
       const formData: any = new FormData()
-      this.productContent.imageurl = null;
+
+
       this.urlToObject().then(file => {
-        formData.append('product', JSON.stringify(this.productContent))
         formData.append('image', file)
         if (this.formType === 'add') {
+          formData.append('product', JSON.stringify(this.productContent))
           this.productService.createProductWithFileUpload(formData).subscribe(
             (response: Product) => {
               this.toast.showSuccess('Thành công')
@@ -167,6 +160,10 @@ export class AddProductComponent implements OnInit {
             }
           )
         } else {
+          const imageId = this.productContent.imageurl.split("/")[8];
+          formData.append('product', JSON.stringify(this.productContent))
+          formData.append('imageID', imageId)
+          // console.log(this.productContent);
           this.productService.updateProductWithFileUpload(formData).subscribe(
             (response: Product) => {
               this.toast.showSuccess('Thành công')

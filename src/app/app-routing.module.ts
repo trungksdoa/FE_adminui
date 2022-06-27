@@ -33,11 +33,11 @@ const routes: Routes = [
     component: ProductManagerComponent,
     canActivate: [AuthService]
   },
-  {
-    path: 'banner',
-    component: BannerManagerComponent,
-    canActivate: [AuthService]
-  },
+  // {
+  //   path: 'banner',
+  //   component: BannerManagerComponent,
+  //   canActivate: [AuthService]
+  // },
   {
     path: 'product',
     component: ProductManagerComponent
