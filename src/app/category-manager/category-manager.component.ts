@@ -49,8 +49,8 @@ export class CategoryManagerComponent implements OnInit {
     )
   }
 
-  public onUpdateCategory (editForm: NgForm): void {
-    this.categoryService.updateCategory(editForm.value).subscribe(
+  public onUpdateCategory (cate: Category): void {
+    this.categoryService.updateCategory(cate).subscribe(
       (response: Category) => {
         this.toastService.showSuccess('Thành công')
         this.getAllCategory()
