@@ -47,14 +47,14 @@ export class ProductManagerComponent implements OnInit {
     this.sharedService.invokeSendDataAfterSubmit.subscribe((data: Product) => {
       let index = this.products.findIndex(item => item.id === data.id)
       if (index == -1) {
-        data.createAt = new Date(data.createAt).toLocaleDateString()
+        // data.createAt = new Date(data.createAt).toLocaleDateString()
         this.products.push(data)
       } else {
         this.products
           .filter(item => item.id === data.id)
           .map(preData => {
             preData = data
-            data.lastUpdated = new Date(data.lastUpdated).toLocaleDateString()
+            // data.lastUpdated = new Date(data.lastUpdated).toLocaleDateString()
             this.timeStamp = new Date().getTime()
             // preData.imageurl = this.getLinkPicture(data.imageurl)
             // console.log(preData.imageurl);
