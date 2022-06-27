@@ -45,6 +45,10 @@ export class ProductManagerComponent implements OnInit {
   ) {}
   ngOnInit (): void {
     this.sharedService.invokeSendDataAfterSubmit.subscribe((data: Product) => {
+      data.createAt = new Date(data.createAt).toUTCString()
+      if(data.lastUpdated!=undefined){
+        data.lastUpdated = new Date(data.lastUpdated).toUTCString()}
+
       let index = this.products.findIndex(item => item.id === data.id)
       if (index == -1) {
         // data.createAt = new Date(data.createAt).toLocaleDateString()
