@@ -28,9 +28,13 @@ export class ProductManagerComponent implements OnInit {
     description: '',
     imageurl: '',
     price: 0,
+    createAt: undefined,
+    lastUpdated: undefined,
     catagory: {
       id: 0,
       name: '',
+      createAt: undefined,
+      lastUpdated: undefined
     }
   }
   constructor (
@@ -42,21 +46,18 @@ export class ProductManagerComponent implements OnInit {
   ngOnInit (): void {
     this.sharedService.invokeSendDataAfterSubmit.subscribe((data: Product) => {
       let index = this.products.findIndex(item => item.id === data.id)
+
       if (index == -1) {
-        // data.createAt = new Date(data.createdAt).toLocaleDateString()
-        this.products.push(data)
+        this.filterArray.push(data)
       } else {
         this.filterArray = this.products
-        .filter(item => item.id === data.id)
-        .map(preData => {
-          preData = data
-          // data.updatedAt = new Date(data.updatedAt).toLocaleDateString()
-          this.timeStamp = new Date().getTime()
-          // preData.imageurl = this.getLinkPicture(data.imageurl)
-          // console.log(preData.imageurl);
-          return preData
-        })
-        
+          .filter(item => item.id === data.id)
+          .map(preData => {
+            preData = data
+
+            this.timeStamp = new Date().getTime()
+            return preData
+          })
       }
     })
 
@@ -66,12 +67,14 @@ export class ProductManagerComponent implements OnInit {
   getAllProduct (): void {
     this.productService.getAllProduct().subscribe(
       (response: Product[]) => {
-         console.log(response);
+        console.log(response)
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
-          // element.createdAt = new Date(element.createdAt).toLocaleDateString()
-          // element.updatedAt = new Date(element.updatedAt).toLocaleDateString()
+          // element.createAt = new Date(element.createAt).toUTCString()
+          // if(element.lastUpdated!=undefined){
+          //   element.lastUpdated = new Date(element.lastUpdated).toUTCString()
+          // }
         }
         this.filterArray = response
         this.products = response
