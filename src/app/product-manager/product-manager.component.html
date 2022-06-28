@@ -40,17 +40,15 @@
           <td><img [src]="getLinkPicture(product.imageurl)" alt="" border=3 height=100
               width=100></td>
 
-          <td class="text-wrapper">{{ product.name }} </td>
-          <td class="text-wrapper"> {{ product.catagory ? product.catagory.name: "không có danh mục"}} </td>
-          <td class="text-wrapper"> {{ product.description }}</td>
-          <td class="text-wrapper"> {{ product.price }}</td>
-          <td class="text-wrapper"> {{ product.createAt }}</td>
-          <td class="text-wrapper"> {{ product.lastUpdated }}</td>
+          <td >{{ product.name }} </td>
+          <td > {{ product.catagory ? product.catagory.name: "không có danh mục"}} </td>
+          <td > {{ product.description }}</td>
+          <td > {{ product.price }}</td>
+          <td > {{ product.createAt }}</td>
+          <td > {{ product.lastUpdated }}</td>
           <td>
-            <button mat-button (click)="openDialog(product, 'edit')" class="btn btn-warning" data-placement="top"
-              data-original-title="Edit">Edit </button>
-            <button mat-button (click)="onDeleteProduct(product.id)" class="btn btn-danger tooltips"
-              data-placement="top" data-original-title="Delete">Delete</button>
+            <a (click)="openDialog(product, 'edit')" class="btn btn-warning tooltips" data-placement="top" data-original-title="Edit">Edit </a>
+            <a (click)="onDeleteProduct(product.id)" class="btn btn-danger tooltips" data-placement="top" data-original-title="Delete">Delete</a>
           </td>
           <td></td>
         </tr>
