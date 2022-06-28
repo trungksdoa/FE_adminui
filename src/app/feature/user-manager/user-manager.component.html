@@ -21,6 +21,8 @@
           <th> Tên khách hàng </th>
           <th> Số điện thoại </th>
           <th> Địa chỉ</th>
+          <th> Ngày Tạo </th>
+          <th> Ngày Cập Nhật </th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +30,8 @@
           <td>{{item.name}}</td>
           <td>{{item.phone}}</td>
           <td>{{item.address}}</td>
+          <td>{{item.createAt}}</td>
+          <td>{{item.lastUpdated}}</td>
         </tr>
         <tr *ngIf="filterArray.length <= 0">
           <td colspan="3">
