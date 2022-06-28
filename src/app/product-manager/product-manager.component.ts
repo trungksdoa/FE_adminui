@@ -46,16 +46,17 @@ export class ProductManagerComponent implements OnInit {
         // data.createAt = new Date(data.createdAt).toLocaleDateString()
         this.products.push(data)
       } else {
-        this.products
-          .filter(item => item.id === data.id)
-          .map(preData => {
-            preData = data
-            // data.updatedAt = new Date(data.updatedAt).toLocaleDateString()
-            this.timeStamp = new Date().getTime()
-            // preData.imageurl = this.getLinkPicture(data.imageurl)
-            // console.log(preData.imageurl);
-            return preData
-          })
+        this.filterArray = this.products
+        .filter(item => item.id === data.id)
+        .map(preData => {
+          preData = data
+          // data.updatedAt = new Date(data.updatedAt).toLocaleDateString()
+          this.timeStamp = new Date().getTime()
+          // preData.imageurl = this.getLinkPicture(data.imageurl)
+          // console.log(preData.imageurl);
+          return preData
+        })
+        
       }
     })
 
