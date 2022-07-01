@@ -32,6 +32,7 @@ import { CategoryManagerComponent } from './category-manager/category-manager.co
 import { SpinnerService } from './service/spinner.service';
 import { httpInterceptProviders } from './http';
 import { SpinnerComponent } from './feature/spinner/spinner.component';
+import { LoginGuardService } from './login-guard.service';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { SpinnerComponent } from './feature/spinner/spinner.component';
     BannerService,
     DialogService,
     SpinnerService,
-    ToastsService
+    ToastsService,
+    LoginGuardService
   ],
   bootstrap: [AppComponent]
 })

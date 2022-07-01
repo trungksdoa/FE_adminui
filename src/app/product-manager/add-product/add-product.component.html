@@ -12,23 +12,23 @@
         <form (ngSubmit)="onSubmit()">
           <mat-form-field appearance="fill">
             <mat-label>Tên sản phẩm</mat-label>
-            <input matInput id="name" required placeholder="name" name="name" [(ngModel)]="productContent.name" />
+            <input matInput id="name" required placeholder="name" name="tên sản phâm" [(ngModel)]="productContent.name" />
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Mô tả sản phẩm</mat-label>
-            <textarea matInput id="description" required placeholder="description" name="description"
+            <textarea matInput id="description" required placeholder="mô tả" name="description"
               [(ngModel)]="productContent.description"></textarea>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Giá sản phẩm</mat-label>
-            <input matInput type="number" required placeholder="price" id="price" name="price"
+            <input matInput type="number" required placeholder="giá" id="price" name="price"
               [(ngModel)]="productContent.price" />
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Select Categorys (required)</mat-label>
-            <select matNativeControl required class="form-control" placeholder="category" name="category"
+            <select matNativeControl required class="form-control" placeholder="danh mục" name="category"
               [(ngModel)]="productContent.catagory.id">
-              <option label="--select category --"></option>
+              <option label="--chọn danh mục --"></option>
               <option *ngFor="let category of categorys" [value]="category.id">
                 {{category.name}}</option>
             </select>

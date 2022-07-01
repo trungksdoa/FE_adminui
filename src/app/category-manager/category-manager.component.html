@@ -14,7 +14,7 @@
   <div class="container" id="main-container" style="text-align: center ;">
   <div class="row">
    <h2> Danh sách danh mục </h2>
-      <table class="table table-bordered table-responsive-sm table-responsive-md 
+      <table class="table table-bordered table-responsive-sm table-responsive-md
       table-responsive-lg">
           <thead>
               <tr>
@@ -28,8 +28,8 @@
           <tbody>
               <tr *ngFor="let category of filterArray" >
                   <td> {{ category.name }} </td>
-                  <td> {{ category.createAt }} </td>
-                  <td> {{ category.lastUpdated }} </td>
+                  <td> {{ category.CreateAt }} </td>
+                  <td> {{ category.LastUpdated }} </td>
                   <td>
                      <a (click)="onOpenModal(category, 'edit')" class="btn btn-warning tooltips" data-placement="top" data-original-title="Edit">Edit </a>
                      <a (click)="onOpenModal(category, 'delete')" class="btn btn-danger tooltips" data-placement="top" data-original-title="Delete">Delete</a>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="form-group">
                </div>
-                <input type="hidden" ngModel="{{editCate?.createAt}}" name="createAt" class="form-control" id="createAt" placeholder="createAt">
+                <!-- <input type="hidden" ngModel="{{editCate?.CreateAt}}" name="createAt" class="form-control" id="createAt" placeholder="createAt"> -->
                 <input type="hidden" ngModel="{{editCate?.id}}" name="id" class="form-control" id="id" placeholder="Email">
 
 

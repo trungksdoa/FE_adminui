@@ -1,15 +1,25 @@
-import { Category } from "../category/category";
+import { Category, CategoryWithoutDate } from "../category/category";
 
-export interface Product extends Category {
+export interface Product {
 
     id: number;
     name: string;
     description: string;
     imageurl: string;
     price: number;
-    createAt: any;
-    lastUpdated: any;
+    CreateAt: any;
+    LastUpdated: any;
     catagory: Category;
+  }
+
+
+  export interface ProductWithoutDate {
+    id: number;
+    name: string;
+    description: string;
+    imageurl: string;
+    price: number;
+    catagory: CategoryWithoutDate;
   }
 
 

@@ -3,10 +3,25 @@ import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Category } from 'src/app/api/category/category'
 import { CategoryService } from 'src/app/api/category/category.service'
-import { Product } from 'src/app/api/product/product'
+import { Product, ProductWithoutDate } from 'src/app/api/product/product'
 import { ProductService } from 'src/app/api/product/product.service'
 import { SharedService, ToastsService } from 'src/app/service'
 
+export const initValue: Product = {
+  id: 0,
+  name: '',
+  description: '',
+  imageurl: '',
+  price: 0,
+  CreateAt: undefined,
+  LastUpdated: undefined,
+  catagory: {
+    id: 0,
+    name: '',
+    CreateAt: undefined,
+    LastUpdated: undefined
+  }
+}
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -21,7 +36,8 @@ export class AddProductComponent implements OnInit {
   imageDataUrl: any = undefined
   formType: string = 'add'
   // fileSelected: File
-  productContent: Product
+  productContent: Product = initValue
+
   style = {
     'border-radius': '5px',
     height: '327px',
@@ -64,7 +80,6 @@ export class AddProductComponent implements OnInit {
     this.categoryService.getAllCategory().subscribe(
       (response: Category[]) => {
         this.categorys = response
-        console.log(this.categorys)
       },
       (error: HttpErrorResponse) => {
         alert(error.message)
@@ -118,35 +133,34 @@ export class AddProductComponent implements OnInit {
   }
 
   clearForm () {
-    this.productContent = {
-      id: 0,
-      name: '',
-      description: '',
-      imageurl: '',
-      price: 0,
-      createAt:undefined,
-      lastUpdated:undefined,
-      catagory: {
-        id: 0,
-        name: '',
-        createAt:undefined,
-        lastUpdated:undefined
-      }
-    }
+    this.productContent = initValue
   }
 
+  setSendValue (value: Product) {
+    const requestValue: ProductWithoutDate = {
+      id: value.id,
+      name: value.name,
+      description: value.description,
+      imageurl: value.imageurl,
+      price: value.price,
+      catagory: {
+        id:value.catagory.id,
+        name:''
+      }
+    }
+    return JSON.stringify(requestValue)
+  }
   onSubmit = () => {
-
+    // this.setSendValue(this.productContent)
     if (Object.keys(this.formValidate(this.productContent)).length === 0) {
       this.isLoading = true
       this.failed = false
       const formData: any = new FormData()
 
-
       this.urlToObject().then(file => {
         formData.append('image', file)
         if (this.formType === 'add') {
-          formData.append('product', JSON.stringify(this.productContent))
+          formData.append('product', this.setSendValue(this.productContent))
           this.productService.createProductWithFileUpload(formData).subscribe(
             (response: Product) => {
               this.toast.showSuccess('Thành công')
@@ -161,9 +175,8 @@ export class AddProductComponent implements OnInit {
           )
         } else {
           const imageId = this.productContent.imageurl.split("/")[8];
-          formData.append('product', JSON.stringify(this.productContent))
+          formData.append('product', this.setSendValue(this.productContent))
           formData.append('imageID', imageId)
-          // console.log(this.productContent);
           this.productService.updateProductWithFileUpload(formData).subscribe(
             (response: Product) => {
               this.toast.showSuccess('Thành công')

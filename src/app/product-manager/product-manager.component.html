@@ -44,8 +44,8 @@
           <td > {{ product.catagory ? product.catagory.name: "không có danh mục"}} </td>
           <td > {{ product.description }}</td>
           <td > {{ product.price }}</td>
-          <td > {{ product.createAt }}</td>
-          <td > {{ product.lastUpdated }}</td>
+          <td > {{ product.CreateAt }}</td>
+          <td > {{ product.LastUpdated }}</td>
           <td>
             <a (click)="openDialog(product, 'edit')" class="btn btn-warning tooltips" data-placement="top" data-original-title="Edit">Edit </a>
             <a (click)="onDeleteProduct(product.id)" class="btn btn-danger tooltips" data-placement="top" data-original-title="Delete">Delete</a>

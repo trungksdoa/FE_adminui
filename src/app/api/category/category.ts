@@ -1,6 +1,12 @@
 export interface Category {
   id: number
   name: string
-  createAt: any
-  lastUpdated: any
+  CreateAt: any
+  LastUpdated: any
+}
+
+
+export interface CategoryWithoutDate {
+  id: number
+  name: string
 }
