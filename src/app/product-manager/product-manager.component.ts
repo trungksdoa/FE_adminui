@@ -54,7 +54,7 @@ export class ProductManagerComponent implements OnInit {
           .filter(item => item.id === data.id)
           .map(preData => {
             preData = data
-
+            preData.price == preData.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
             this.timeStamp = new Date().getTime()
             return preData
           })
