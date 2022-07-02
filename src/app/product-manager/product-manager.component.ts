@@ -71,8 +71,9 @@ export class ProductManagerComponent implements OnInit {
         console.log(response)
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
+          
           const element = response[i]
-          element.price = new Intl.NumberFormat('en-US', {
+          response[i].price = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
             minimumFractionDigits: 2
