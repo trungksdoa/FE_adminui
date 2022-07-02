@@ -118,4 +118,7 @@ export class ProductManagerComponent implements OnInit {
     }
     return linkPicture
   }
+  getCalculatedValue (products: Product) {
+    products.price = products.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+  }
 }

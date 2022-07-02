@@ -6,7 +6,7 @@ export interface Product {
     name: string;
     description: string;
     imageurl: string;
-    price: number;
+    price: any;
     CreateAt: any;
     LastUpdated: any;
     catagory: Category;
@@ -18,7 +18,7 @@ export interface Product {
     name: string;
     description: string;
     imageurl: string;
-    price: number;
+    price: any;
     catagory: CategoryWithoutDate;
   }
 
