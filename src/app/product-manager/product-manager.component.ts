@@ -67,10 +67,16 @@ export class ProductManagerComponent implements OnInit {
   getAllProduct (): void {
     this.productService.getAllProduct().subscribe(
       (response: Product[]) => {
+        
         console.log(response)
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
+          element.price = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2
+          })
           
           // element.createAt = new Date(element.createAt).toUTCString()
           // if(element.lastUpdated!=undefined){
