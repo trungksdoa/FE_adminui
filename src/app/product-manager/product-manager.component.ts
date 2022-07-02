@@ -119,7 +119,9 @@ export class ProductManagerComponent implements OnInit {
     }
     return linkPicture
   }
-  // getCalculatedValue (products: Product) {
-  //   products.price = products.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
-  // }
+  getCalculatedValue (orders: Product) {
+    return this.sharedService.getFormatCurrency(
+      orders.price.reduce((prev, curr) => prev + curr.productPrice, 0)
+    )
+  }
 }

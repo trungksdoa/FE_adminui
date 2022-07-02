@@ -43,7 +43,7 @@
           <td >{{ product.name }} </td>
           <td > {{ product.catagory ? product.catagory.name: "không có danh mục"}} </td>
           <td > {{ product.description }}</td>
-          <td > {{ product.price }}</td>
+          <td > {{getCalculatedValue(product)}}</td>
           <td > {{ product.CreateAt }}</td>
           <td > {{ product.LastUpdated }}</td>
           <td>
