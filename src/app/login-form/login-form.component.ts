@@ -52,8 +52,8 @@ export class LoginFormComponent implements OnInit {
       phone: undefined,
       isAdmin: true,
       name: undefined,
-      createAt: undefined,
-   lastUpdated: undefined,
+      CreateAt: undefined,
+   LastUpdated: undefined,
     }
 
     return user
