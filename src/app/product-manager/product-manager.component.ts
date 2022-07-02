@@ -54,7 +54,7 @@ export class ProductManagerComponent implements OnInit {
           .filter(item => item.id === data.id)
           .map(preData => {
             preData = data
-            preData.price == preData.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+  
             this.timeStamp = new Date().getTime()
             return preData
           })
@@ -71,7 +71,7 @@ export class ProductManagerComponent implements OnInit {
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
-          element.price == element.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+          
           // element.createAt = new Date(element.createAt).toUTCString()
           // if(element.lastUpdated!=undefined){
           //   element.lastUpdated = new Date(element.lastUpdated).toUTCString()
@@ -119,9 +119,9 @@ export class ProductManagerComponent implements OnInit {
     }
     return linkPicture
   }
-  getCalculatedValue (orders: Product) {
+  getCalculatedValue (products: Product) {
     return this.sharedService.getFormatCurrency(
-      orders.price.reduce((prev, curr) => prev + curr.productPrice, 0)
+      products.price.reduce((prev, curr) => prev + curr.productPrice, 0)
     )
   }
 }
