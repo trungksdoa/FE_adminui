@@ -73,11 +73,7 @@ export class ProductManagerComponent implements OnInit {
         for (let i = 0; i < response.length; i++) {
           
           const element = response[i]
-          response[i].price = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 2
-          })
+          response[i].price = response[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
           
           // element.createAt = new Date(element.createAt).toUTCString()
           // if(element.lastUpdated!=undefined){
