@@ -24,6 +24,6 @@ export interface Order {
 
 
 export interface orderManagement extends Order {
-  createAt:any
-  lastUpdated:any
+   CreateAt: any;
+  LastUpdated: any;
 }

@@ -6,8 +6,8 @@ export class Users {
   public address: String
   public phone: String
   public isAdmin: boolean
-  public createAt: any;
-  public lastUpdated: any;
+  public CreateAt: any;
+  public LastUpdated: any;
   constructor (
     id: number,
     name: String,
@@ -15,8 +15,8 @@ export class Users {
     password: String,
     address: String,
     phone: String,
-    createAt: any,
-   lastUpdated: any,
+    CreateAt: any,
+    LastUpdated: any,
   ) {
     this.id = id
     this.name = name
@@ -24,7 +24,7 @@ export class Users {
     this.password = password
     this.address = address
     this.phone = phone
-    this.createAt=createAt
-    this.lastUpdated=lastUpdated
+    this.CreateAt=CreateAt
+    this.LastUpdated=LastUpdated
   }
 }
