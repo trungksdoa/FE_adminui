@@ -71,6 +71,7 @@ export class ProductManagerComponent implements OnInit {
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
+          element.price == element.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
           // element.createAt = new Date(element.createAt).toUTCString()
           // if(element.lastUpdated!=undefined){
           //   element.lastUpdated = new Date(element.lastUpdated).toUTCString()
@@ -118,7 +119,7 @@ export class ProductManagerComponent implements OnInit {
     }
     return linkPicture
   }
-  getCalculatedValue (products: Product) {
-    products.price = products.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
-  }
+  // getCalculatedValue (products: Product) {
+  //   products.price = products.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+  // }
 }
