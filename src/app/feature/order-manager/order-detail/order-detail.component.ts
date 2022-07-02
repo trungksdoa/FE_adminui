@@ -9,6 +9,7 @@ import { SharedService } from "src/app/service";
   styleUrls: ['./order-detail.component.css']
 })
 export class OrderDetailComponent implements OnInit {
+  timeStamp: any = new Date().getTime()
   orderItems: orderItems[];
   constructor(public dialogRef: MatDialogRef<OrderDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: orderManagement, private _sharedService: SharedService,) { }
@@ -28,5 +29,11 @@ export class OrderDetailComponent implements OnInit {
   onNoClick(): void {
     console.log("Ok")
     this.dialogRef.close(this.orderItems);
+  }
+  public getLinkPicture (linkPicture: any) {
+    if (this.timeStamp) {
+      return linkPicture + '?' + this.timeStamp
+    }
+    return linkPicture
   }
 }

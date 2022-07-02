@@ -33,8 +33,6 @@ export class OrderManagerComponent implements OnInit {
     this.sharedService = _sharedService
     this.service.getorders().subscribe(items => {
       items.forEach(item => {
-        item.createAt = new Date(item.createAt).toUTCString()
-        item.lastUpdated = new Date(item.lastUpdated).toUTCString()
       })
       this.orders = items
       this.filterArray = items
