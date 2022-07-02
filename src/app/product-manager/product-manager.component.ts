@@ -119,9 +119,5 @@ export class ProductManagerComponent implements OnInit {
     }
     return linkPicture
   }
-  getCalculatedValue (products: Product) {
-    return this.sharedService.getFormatCurrency(
-      products.price.reduce((prev, curr) => prev + curr.productPrice, 0)
-    )
-  }
+  
 }
