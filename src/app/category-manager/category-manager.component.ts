@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
-import { Category } from '../api/category/category'
+import { Category, CategoryWithoutDate } from '../api/category/category'
 import { CategoryService } from '../api/category/category.service'
 
 import { SharedService, ToastsService } from '../service'
@@ -11,6 +11,7 @@ import { SharedService, ToastsService } from '../service'
   styleUrls: ['./category-manager.component.css']
 })
 export class CategoryManagerComponent implements OnInit {
+
   categorys: Category[]
   filterArray: Category[] = []
   editCate: Category
@@ -23,6 +24,14 @@ export class CategoryManagerComponent implements OnInit {
 
   ngOnInit () {
     this.getAllCategory()
+  }
+  setSendValue (value: Category) {
+    const requestValue: CategoryWithoutDate = {
+      id: value.id,
+      name: value.name,
+      
+    }
+    return requestValue
   }
   public getAllCategory (): void {
     this.categoryService.getAllCategory().subscribe(
@@ -50,7 +59,7 @@ export class CategoryManagerComponent implements OnInit {
   }
 
   public onUpdateCategory (cate: Category): void {
-    this.categoryService.updateCategory(cate).subscribe(
+    this.categoryService.updateCategory(this.setSendValue(cate)).subscribe(
       (response: Category) => {
         this.toastService.showSuccess('Thành công')
         this.getAllCategory()

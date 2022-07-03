@@ -71,7 +71,6 @@ export class ProductManagerComponent implements OnInit {
         console.log(response)
         this.isLoading = true
         for (let i = 0; i < response.length; i++) {
-          
           const element = response[i]
           response[i].price = response[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
           
