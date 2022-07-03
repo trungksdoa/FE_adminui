@@ -29,6 +29,9 @@ export class CategoryManagerComponent implements OnInit {
     const requestValue: CategoryWithoutDate = {
       id: value.id,
       name: value.name,
+      CreateAt:value.CreateAt,
+      LastUpdated:value.LastUpdated
+
       
     }
     return requestValue

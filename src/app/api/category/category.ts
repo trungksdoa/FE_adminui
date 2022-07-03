@@ -9,5 +9,6 @@ export interface Category {
 export interface CategoryWithoutDate {
   id: number
   name: string
-  
+  CreateAt: any
+  LastUpdated: any
 }
