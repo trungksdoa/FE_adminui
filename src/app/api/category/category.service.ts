@@ -18,8 +18,8 @@ export class CategoryService {
     return this.http.post<Category>(`${this.apiServerUrl}/catagory/save`, cate);
   }
 
-  public updateCategory(cate: CategoryWithoutDate): Observable<CategoryWithoutDate> {
-    return this.http.put<CategoryWithoutDate>(`${this.apiServerUrl}/catagory/update`, cate);
+  public updateCategory(cate: Category): Observable<Category> {
+    return this.http.put<Category>(`${this.apiServerUrl}/catagory/update`, cate);
   }
 
   public deleteCategory(cateid: number): Observable<void> {

@@ -26,7 +26,7 @@ export class CategoryManagerComponent implements OnInit {
     this.getAllCategory()
   }
   setSendValue (value: Category) {
-    const requestValue: CategoryWithoutDate = {
+    const requestValue: Category = {
       id: value.id,
       name: value.name,
       CreateAt:value.CreateAt,
