@@ -8,6 +8,7 @@ import { OrderManagerComponent } from "./feature/order-manager/order-manager.com
 import { UserManagerComponent } from "./feature/user-manager/user-manager.component";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { ProductManagerComponent } from "./product-manager/product-manager.component";
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,12 @@ const routes: Routes = [
     component: CategoryManagerComponent,
     canActivate: [AuthService]
   },
+  {
+    path: 'chart',
+    component: BarChartComponent,
+    canActivate: [AuthService]
+  },
+  
 
 
 ];
