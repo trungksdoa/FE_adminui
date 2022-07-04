@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { ChartOptions, ChartType, ChartData } from 'chart.js';
+import { ChartOptions, ChartData } from 'chart.js';
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent {
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
   salesData: ChartData<'bar'> = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
     datasets: [
