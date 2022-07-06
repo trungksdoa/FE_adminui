@@ -10,6 +10,7 @@ export interface Product {
     CreateAt: any;
     LastUpdated: any;
     catagory: Category;
+    slogan:string;
   }
 
 

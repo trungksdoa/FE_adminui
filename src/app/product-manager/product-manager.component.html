@@ -20,6 +20,7 @@
         <tr>
           <th> Image </th>
           <th> Name </th>
+          <th> Slogan </th>
           <th> Category </th>
           <th> Description</th>
           <th> Price</th>
@@ -37,6 +38,7 @@
               width=100></td>
 
           <td >{{ product.name }} </td>
+          <td >{{ product.slogan }} </td>
           <td > {{ product.catagory ? product.catagory.name: "không có danh mục"}} </td>
           <td > {{ product.description }}</td>
           <td > {{product.price}}</td>

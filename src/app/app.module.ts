@@ -33,8 +33,8 @@ import { SpinnerService } from './service/spinner.service';
 import { httpInterceptProviders } from './http';
 import { SpinnerComponent } from './feature/spinner/spinner.component';
 import { LoginGuardService } from './login-guard.service';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
-import { NgChartsModule  } from 'ng2-charts';
+
+
 
 
 @NgModule({
@@ -52,7 +52,7 @@ import { NgChartsModule  } from 'ng2-charts';
     UserManagerComponent,
     CategoryManagerComponent,
     SpinnerComponent,
-    BarChartComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -66,7 +66,6 @@ import { NgChartsModule  } from 'ng2-charts';
     ReactiveFormsModule,
     NgSelectModule,
     NgxSkeletonLoaderModule,
-    NgChartsModule
 
   ],
   providers: [
