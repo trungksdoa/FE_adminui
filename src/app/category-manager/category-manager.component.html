@@ -18,6 +18,7 @@
           <thead>
               <tr>
                   <th> Name </th>
+                  <th> Slogan </th>
                   <th> Ngày Tạo </th>
                   <th> Ngày Cập Nhật</th>
                   <th> Action</th>
@@ -27,6 +28,7 @@
           <tbody>
               <tr *ngFor="let category of filterArray" >
                   <td> {{ category.name }} </td>
+                  <td> {{ category.slogan }} </td>
                   <td> {{ category.CreateAt }} </td>
                   <td> {{ category.LastUpdated }} </td>
                   <td>
@@ -92,6 +94,7 @@
                </div>
                 <input type="hidden" ngModel="{{editCate?.CreateAt}}" name="CreateAt" class="form-control" id="CreateAt" placeholder="CreateAt">
                 <input type="hidden" ngModel="{{editCate?.id}}" name="id" class="form-control" id="id" placeholder="Email">
+                <input type="hidden" ngModel="{{editCate?.slogan}}" name="slogan" class="form-control" id="slogan" placeholder="slogan">
                 <!-- <input type="hidden" ngModel="{{editCate?.CreateAt}}" name="CreateAt" class="form-control" id="CreateAt" placeholder="CreateAt"> -->
 
 

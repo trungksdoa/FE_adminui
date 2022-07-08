@@ -30,7 +30,8 @@ export class CategoryManagerComponent implements OnInit {
       id: value.id,
       name: value.name,
       CreateAt:value.CreateAt,
-      LastUpdated:value.LastUpdated
+      LastUpdated:value.LastUpdated,
+      slogan:value.slogan
 
       
     }

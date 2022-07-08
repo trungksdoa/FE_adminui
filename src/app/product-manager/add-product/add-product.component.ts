@@ -15,9 +15,11 @@ export const initValue: Product = {
   price: 0,
   CreateAt: undefined,
   LastUpdated: undefined,
+  slogan:'',
   catagory: {
     id: 0,
     name: '',
+    slogan:'',
     CreateAt: undefined,
     LastUpdated: undefined
   }

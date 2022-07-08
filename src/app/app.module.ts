@@ -35,6 +35,8 @@ import { SpinnerComponent } from './feature/spinner/spinner.component';
 import { LoginGuardService } from './login-guard.service';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,8 @@ import { LoginGuardService } from './login-guard.service';
     LoginFormComponent,
     UserManagerComponent,
     CategoryManagerComponent,
-    SpinnerComponent
+    SpinnerComponent,
+  
   ],
   imports: [
     BrowserModule,

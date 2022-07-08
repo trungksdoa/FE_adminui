@@ -10,6 +10,7 @@ import { LoginFormComponent } from "./login-form/login-form.component";
 import { ProductManagerComponent } from "./product-manager/product-manager.component";
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
@@ -43,6 +44,8 @@ const routes: Routes = [
     component: CategoryManagerComponent,
     canActivate: [AuthService]
   },
+  
+  
 
 
 ];
