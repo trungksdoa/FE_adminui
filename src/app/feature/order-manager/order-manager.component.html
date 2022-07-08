@@ -28,13 +28,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let order of filterArray">
-          <td> <button mat-button style="padding:5px">{{ order.fullname}} </button></td>
-          <td> <button mat-button style="padding:5px"> {{ order.phoneNumber}}</button> </td>
+          <td> <button mat-button style="padding:5px">{{ order.userId.name}} </button></td>
+          <td> <button mat-button style="padding:5px"> {{ order.userId.phone}}</button> </td>
           <td id="text-wrapper">
             {{ order.CreateAt }}
           </td>
           <td id="text-wrapper" style="padding:5px">
-            {{order.address + ", " + "TP. "+ order.city + ", Q. " + order.district + ", P. " +  order.wards}}
+            {{order.address}}
           </td>
           <td>
             <div *ngIf="order.status == 1;">
