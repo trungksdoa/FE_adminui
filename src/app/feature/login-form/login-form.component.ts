@@ -17,6 +17,8 @@ export class LoginFormComponent implements OnInit {
   durationInSeconds = 5
   show_button: Boolean = false
   show_eye: Boolean = false
+  loading: boolean = true
+
   constructor (
     private UserService: UserService,
     private sharedService: SharedService,
@@ -70,6 +72,7 @@ export class LoginFormComponent implements OnInit {
           this.sharedService.isLoggin(true)
           this.checkPreviousPage()
           this.toast.showSuccess(message)
+          this.loading = false;
           form.reset()
         },
         error => {

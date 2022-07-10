@@ -18,7 +18,7 @@
 <div class="row">
   <div class="col" style="width: 600px;"></div>
   <div class="col">
-    <mat-card class="example-card">
+    <mat-card class="example-card" *ngIf="!loading">
       <mat-card-header>
         <mat-card-title>Đăng nhập</mat-card-title>
       </mat-card-header>
@@ -50,6 +50,10 @@
         </form>
       </mat-card-content>
     </mat-card>
+
+    <div *ngIf="loading">
+      <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
   </div>
   <div class="col" style="width:200px"></div>
 </div>
