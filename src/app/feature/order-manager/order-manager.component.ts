@@ -1,11 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { MatBottomSheet } from "@angular/material/bottom-sheet";
-import { MatDialog } from "@angular/material/dialog";
-import { OrderService } from "src/app/api/service/order.service";
-import { orderManagement } from "src/app/model/Order";
-import { SharedService, ToastsService } from "src/app/service";
-import { OrderDetailComponent } from "./order-detail/order-detail.component";
-
+import { Component, OnInit } from '@angular/core'
+import { MatBottomSheet } from '@angular/material/bottom-sheet'
+import { MatDialog } from '@angular/material/dialog'
+import { OrderService } from 'src/app/api/service/order.service'
+import { orderManagement } from 'src/app/model/Order'
+import { SharedService, ToastsService } from 'src/app/service'
+import { OrderDetailComponent } from './order-detail/order-detail.component'
 
 @Component({
   selector: 'app-order-manager',
@@ -14,14 +13,15 @@ import { OrderDetailComponent } from "./order-detail/order-detail.component";
 })
 export class OrderManagerComponent implements OnInit {
   orders: orderManagement[] = []
-  searchValue:any;
+  searchValue: any
   filterArray: any[] = []
   status_ = {
-    success: 4,
-    cancel: 3,
-    confirm: 2,
-    InConfirm: 1
+    cancel: 4,
+    paid: 3,
+    unpaid: 2,
+    pending: 1
   }
+  loading: boolean = true
   sharedService: SharedService
   constructor (
     private service: OrderService,
@@ -31,17 +31,19 @@ export class OrderManagerComponent implements OnInit {
     private toast: ToastsService
   ) {
     this.sharedService = _sharedService
-    this.service.getorders().subscribe(items => {
-      items.forEach(item => {
-      })
-      this.orders = items
-      this.filterArray = items
-    })
+    this.service.getorders().subscribe(
+      items => {
+        this.orders = items
+        this.filterArray = items
+        this.loading = false
+      },
+      error => {
+        this.loading = true
+      }
+    )
   }
 
-  ngOnInit (): void {
-
-  }
+  ngOnInit (): void {}
 
   openOrderProduct (order: orderManagement) {
     this._bottomSheet.open(OrderDetailComponent, {
@@ -56,13 +58,16 @@ export class OrderManagerComponent implements OnInit {
 
   updateStatus (status: number, orderId: number) {
     // console.log(status)
-    return this.service.updateOrder(status, orderId).subscribe(data => {
+
+    this.loading = true
+    this.service.updateOrder(status, orderId).subscribe(data => {
       this.orders
         .filter(prevData => prevData.id == data.id)
         .forEach(item => {
+          this.loading = false;
           item.status = data.status
         })
-        this.toast.showSuccess("Thành công")
+      this.toast.showSuccess('Thành công')
     })
   }
 

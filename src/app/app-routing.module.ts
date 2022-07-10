@@ -1,13 +1,15 @@
-import { LoginGuardService } from './login-guard.service';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthService } from "./auth.service";
-import { CategoryManagerComponent } from "./category-manager/category-manager.component";
+import { CategoryManagerComponent } from "./feature/category-manager/category-manager.component";
 import { DashboardComponent } from "./feature/dashboard/dashboard.component";
+import { LoginFormComponent } from "./feature/login-form/login-form.component";
 import { OrderManagerComponent } from "./feature/order-manager/order-manager.component";
+import { ProductManagerComponent } from "./feature/product-manager/product-manager.component";
 import { UserManagerComponent } from "./feature/user-manager/user-manager.component";
-import { LoginFormComponent } from "./login-form/login-form.component";
-import { ProductManagerComponent } from "./product-manager/product-manager.component";
+import { LoginGuardService } from "./login-guard.service";
+
+
 
 
 
@@ -44,8 +46,8 @@ const routes: Routes = [
     component: CategoryManagerComponent,
     canActivate: [AuthService]
   },
-  
-  
+
+
 
 
 ];

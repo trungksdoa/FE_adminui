@@ -11,9 +11,10 @@ export interface orderItems{
 export interface Order {
   id: number
   orderItems: Array<orderItems>
-  address:string
+  address2:string
   userId: Users
   note:string
+  orderType:string
   status:number
 }
 

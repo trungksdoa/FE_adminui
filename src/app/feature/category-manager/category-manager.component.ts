@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
-import { Category, CategoryWithoutDate } from '../api/category/category'
-import { CategoryService } from '../api/category/category.service'
+import { Category } from 'src/app/api/category/category'
+import { CategoryService } from 'src/app/api/category/category.service'
+import { ToastsService, SharedService } from 'src/app/service'
 
-import { SharedService, ToastsService } from '../service'
 @Component({
   selector: 'app-category-manager',
   templateUrl: './category-manager.component.html',
@@ -16,6 +16,7 @@ export class CategoryManagerComponent implements OnInit {
   filterArray: Category[] = []
   editCate: Category
   deleteCate: Category
+  loading:boolean = true;
   constructor (
     private categoryService: CategoryService,
     private toastService: ToastsService,
@@ -33,7 +34,7 @@ export class CategoryManagerComponent implements OnInit {
       LastUpdated:value.LastUpdated,
       slogan:value.slogan
 
-      
+
     }
     return requestValue
   }
@@ -42,9 +43,11 @@ export class CategoryManagerComponent implements OnInit {
       (response: Category[]) => {
         this.categorys = response
         this.filterArray = response
+        this.loading = false;
       },
       (error: HttpErrorResponse) => {
         this.toastService.showError('Thất bại')
+        this.loading = true;
       }
     )
   }

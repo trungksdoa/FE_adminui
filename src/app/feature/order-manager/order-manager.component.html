@@ -22,72 +22,78 @@
           <th> Ngày tạo</th>
           <th> Địa chỉ</th>
           <th>Trạng thái</th>
+          <th>Hình thức</th>
           <th> Tổng đơn hàng</th>
           <th>Sản phẩm đã đặt</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of filterArray">
-          <td> <button mat-button style="padding:5px">{{ order.userId.name}} </button></td>
-          <td> <button mat-button style="padding:5px"> {{ order.userId.phone}}</button> </td>
-          <td id="text-wrapper">
-            {{ order.CreateAt }}
-          </td>
-          <td id="text-wrapper" style="padding:5px">
-            {{order.address}}
-          </td>
-          <td>
-            <div *ngIf="order.status == 1;">
-              <button mat-button color="warn" [matMenuTriggerFor]="menu" style="padding:5px">Chưa xác nhận</button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="updateStatus(status_.cancel,order.id)">
-                  <mat-icon>cancel</mat-icon>
-                  <span>Hủy đơn hàng</span>
-                </button>
-                <button mat-menu-item (click)="updateStatus(status_.confirm,order.id)">
-                  <mat-icon>check</mat-icon>
-                  <span>Xác nhận đơn hàng</span>
-                </button>
-              </mat-menu>
-            </div>
-            <div *ngIf="order.status == 2;">
-              <button mat-button color="primary" [matMenuTriggerFor]="menu" style="padding:5px">Đã xác nhận</button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="updateStatus(status_.success,order.id)">
-                  <mat-icon>done</mat-icon>
-                  <span>Hoàn thành</span>
-                </button>
-                <button mat-menu-item (click)="updateStatus(status_.cancel,order.id)">
-                  <mat-icon>cancel</mat-icon>
-                  <span>Hủy đơn hàng</span>
-                </button>
-              </mat-menu>
-            </div>
-            <div *ngIf="order.status == 3;">
-              <button mat-button color="disabled" [matMenuTriggerFor]="menu" style="padding:5px">Đã hủy</button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="updateStatus(status_.confirm,order.id)">
-                  <mat-icon>cached</mat-icon>
-                  <span>Khôi phục đơn hàng</span>
-                </button>
-              </mat-menu>
-            </div>
-            <div *ngIf="order.status == 4;">
-              <button mat-button color="primary" style="padding:5px">Đã hoàn thành</button>
-            </div>
-          </td>
-          <td> <button mat-button style="padding:5px">{{getCalculatedValue(order)}}</button></td>
-          <td> <button mat-button color="accent" style="padding:5px" (click)="openDialog(order)">Ấn vào để
-              xem</button> </td>
-          <!-- <td>
-            <button mat-button color="primary">Sửa</button>
+        <ng-container *ngIf="!loading">
+          <tr *ngFor="let order of filterArray">
+            <td> <button mat-button style="padding:5px">{{ order.userId.name}} </button></td>
+            <td> <button mat-button style="padding:5px"> {{ order.userId.phone}}</button> </td>
+            <td id="text-wrapper">
+              {{ order.CreateAt }}
+            </td>
+            <td id="text-wrapper" style="padding:5px">
+              {{order.userId.address}}
+            </td>
+            <td *ngIf="order.status as status">
+              <div *ngIf="status == 1;">
+                <button mat-button color="warn" [matMenuTriggerFor]="menu" style="padding:5px">Chờ xác nhận</button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="updateStatus(status_.cancel,order.id)">
+                    <mat-icon>cancel</mat-icon>
+                    <span>Hủy đơn hàng</span>
+                  </button>
+                  <button mat-menu-item (click)="updateStatus(status_.unpaid,order.id)">
+                    <mat-icon>check</mat-icon>
+                    <span>Xác nhận đơn hàng</span>
+                  </button>
+                </mat-menu>
+              </div>
+              <div *ngIf="status== 2;">
+                <button mat-button color="warn" [matMenuTriggerFor]="menu" style="padding:5px">Chưa thanh toán</button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="updateStatus(status_.paid,order.id)">
+                    <mat-icon>check</mat-icon>
+                    <span>Đã thanh toán</span>
+                  </button>
+                </mat-menu>
+              </div>
+              <div *ngIf="status == 3;">
+                <h4 style="padding:5px">Đã thanh toán</h4>
+              </div>
+            </td>
+            <td>
+              <h4 style="text-transform: capitalize">{{order.orderType}}</h4>
+            </td>
+            <td> <button mat-button style="padding:5px">{{getCalculatedValue(order)}}</button></td>
+            <td> <button mat-button color="accent" style="padding:5px" (click)="openDialog(order)">Ấn vào để
+                xem</button> </td>
+            <!-- <td>
+              <button mat-button color="primary">Sửa</button>
 
-            <button mat-button color="warn">Xóa</button>
-          </td> -->
-        </tr>
-        <tr *ngIf="filterArray.length <= 0">
-          <td colspan="7">
-            <h3>Không tìm thấy dữ liệu</h3>
+              <button mat-button color="warn">Xóa</button>
+            </td> -->
+          </tr>
+          <tr *ngIf="filterArray.length <= 0">
+            <td colspan="8">
+              <h3>Không tìm thấy dữ liệu</h3>
+            </td>
+          </tr>
+        </ng-container>
+
+        <tr *ngIf="loading">
+          <td colspan="8">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <h3>Đang tải dữ liệu</h3>
+
           </td>
         </tr>
       </tbody>

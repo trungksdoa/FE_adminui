@@ -14,7 +14,6 @@ import { AddProductComponent } from './add-product/add-product.component'
   styleUrls: ['./product-manager.component.css']
 })
 export class ProductManagerComponent implements OnInit {
-  isLoading: boolean
   products: Product[] = []
   temp_products: Product[] = []
   failed: boolean
@@ -37,6 +36,7 @@ export class ProductManagerComponent implements OnInit {
       lastUpdated: undefined
     }
   }
+  loading:boolean = true;
   constructor (
     private productService: ProductService,
     private dialogService: DialogService,
@@ -67,9 +67,7 @@ export class ProductManagerComponent implements OnInit {
   getAllProduct (): void {
     this.productService.getAllProduct().subscribe(
       (response: Product[]) => {
-        
-        console.log(response)
-        this.isLoading = true
+        this.loading = false
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
           response[i].price = response[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
@@ -83,7 +81,7 @@ export class ProductManagerComponent implements OnInit {
         this.products = response
       },
       (error: HttpErrorResponse) => {
-        this.isLoading = false
+        this.loading = true
         this.failed = true
       }
     )

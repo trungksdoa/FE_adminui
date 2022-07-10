@@ -26,7 +26,8 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let category of filterArray" >
+            <ng-container *ngIf="!loading">
+               <tr *ngFor="let category of filterArray" >
                   <td> {{ category.name }} </td>
                   <td> {{ category.slogan }} </td>
                   <td> {{ category.CreateAt }} </td>
@@ -37,10 +38,22 @@
                   </td>
               </tr>
               <tr *ngIf="filterArray.length <= 0">
-                <td colspan="5">
+                <td colspan="6">
                   <h3>Không tìm thấy dữ liệu</h3>
                 </td>
               </tr>
+             </ng-container>
+             <tr *ngIf="loading">
+               <td colspan="6">
+                 <div class="lds-ellipsis">
+                   <div></div>
+                   <div></div>
+                   <div></div>
+                   <div></div>
+                 </div>
+                 <h3>Đang tải dữ liệu</h3>
+               </td>
+             </tr>
           </tbody>
       </table>
 

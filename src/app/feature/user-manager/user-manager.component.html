@@ -25,16 +25,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of filterArray">
-          <td>{{item.name}}</td>
-          <td>{{item.phone}}</td>
-          <td>{{item.address}}</td>
-          <td>{{item.CreateAt}}</td>
-          <td>{{item.LastUpdated}}</td>
-        </tr>
-        <tr *ngIf="filterArray.length <= 0">
-          <td colspan="3">
-            <h3>Không tìm thấy dữ liệu</h3>
+        <ng-container *ngIf="!loading">
+          <tr *ngFor="let item of filterArray">
+            <td>{{item.name}}</td>
+            <td>{{item.phone}}</td>
+            <td>{{item.address}}</td>
+            <td>{{item.CreateAt}}</td>
+            <td>{{item.LastUpdated}}</td>
+          </tr>
+          <tr *ngIf="filterArray.length <= 0">
+            <td colspan="5">
+              <h3>Không tìm thấy dữ liệu</h3>
+            </td>
+          </tr>
+        </ng-container>
+        <tr *ngIf="loading">
+          <td colspan="5">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <h3>Đang tải dữ liệu</h3>
           </td>
         </tr>
       </tbody>

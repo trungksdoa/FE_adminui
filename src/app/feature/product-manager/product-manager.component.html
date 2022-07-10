@@ -32,29 +32,43 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of filterArray">
+        <ng-container *ngIf="!loading">
+          <tr *ngFor="let product of filterArray">
 
-          <td><img [src]="getLinkPicture(product.imageurl)" alt="" border=3 height=100
-              width=100></td>
-
-          <td >{{ product.name }} </td>
-          <td >{{ product.slogan }} </td>
-          <td > {{ product.catagory ? product.catagory.name: "không có danh mục"}} </td>
-          <td > {{ product.description }}</td>
-          <td > {{product.price}}</td>
-          <td > {{ product.CreateAt }}</td>
-          <td > {{ product.LastUpdated }}</td>
-          <td>
-            <a (click)="openDialog(product, 'edit')" class="btn btn-warning tooltips" data-placement="top" data-original-title="Edit">Edit </a>
-            <a (click)="onDeleteProduct(product.id)" class="btn btn-danger tooltips" data-placement="top" data-original-title="Delete">Delete</a>
+            <td><img [src]="getLinkPicture(product.imageurl)" alt="" border=3 height=100
+                width=100></td>
+  
+            <td >{{ product.name }} </td>
+            <td >{{ product.slogan }} </td>
+            <td > {{ product.catagory ? product.catagory.name: "không có danh mục"}} </td>
+            <td > {{ product.description }}</td>
+            <td > {{product.price}}</td>
+            <td > {{ product.CreateAt }}</td>
+            <td > {{ product.LastUpdated }}</td>
+            <td>
+              <a (click)="openDialog(product, 'edit')" class="btn btn-warning tooltips" data-placement="top" data-original-title="Edit">Edit </a>
+              <a (click)="onDeleteProduct(product.id)" class="btn btn-danger tooltips" data-placement="top" data-original-title="Delete">Delete</a>
+            </td>
+            <td></td>
+          </tr>
+          <tr *ngIf="filterArray.length <= 0">
+            <td colspan="10">
+              <h3>Không tìm thấy dữ liệu</h3>
+            </td>
+          </tr>
+        </ng-container>
+        <tr *ngIf="loading">
+          <td colspan="10">
+            <div class="lds-ellipsis">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <h3>Đang tải dữ liệu</h3>
           </td>
-          <td></td>
         </tr>
-        <tr *ngIf="filterArray.length <= 0">
-          <td colspan="9">
-            <h3>Không tìm thấy dữ liệu</h3>
-          </td>
-        </tr>
+        
       </tbody>
     </table>
 
