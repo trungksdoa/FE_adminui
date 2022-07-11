@@ -17,7 +17,7 @@ export class LoginFormComponent implements OnInit {
   durationInSeconds = 5
   show_button: Boolean = false
   show_eye: Boolean = false
-  loading: boolean = true
+  loading: boolean = false
 
   constructor (
     private UserService: UserService,
@@ -27,7 +27,9 @@ export class LoginFormComponent implements OnInit {
     private toast: ToastsService
   ) {}
 
-  ngOnInit (): void {}
+  ngOnInit (): void {
+
+  }
   showPassword () {
     this.show_button = !this.show_button
     this.show_eye = !this.show_eye
@@ -63,6 +65,7 @@ export class LoginFormComponent implements OnInit {
     form.reset()
   }
   formSubmit (form: NgForm) {
+    this.loading = true;
     const requestUser = this.createUser(form.value)
     if (form.value) {
       this.UserService.loginRequest(requestUser).subscribe(
