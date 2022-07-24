@@ -51,10 +51,10 @@ export class ProductManagerComponent implements OnInit {
         this.filterArray.push(data)
       } else {
         this.filterArray = this.products
-          .filter(item => item.id === data.id)
           .map(preData => {
-            preData = data
-  
+            if(preData.id === data.id){
+              preData = data
+            }
             this.timeStamp = new Date().getTime()
             return preData
           })
@@ -71,7 +71,7 @@ export class ProductManagerComponent implements OnInit {
         for (let i = 0; i < response.length; i++) {
           const element = response[i]
           response[i].price = response[i].price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
-          
+
           // element.createAt = new Date(element.createAt).toUTCString()
           // if(element.lastUpdated!=undefined){
           //   element.lastUpdated = new Date(element.lastUpdated).toUTCString()
@@ -119,5 +119,5 @@ export class ProductManagerComponent implements OnInit {
     }
     return linkPicture
   }
-  
+
 }
