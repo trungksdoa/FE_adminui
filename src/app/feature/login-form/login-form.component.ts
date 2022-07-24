@@ -17,7 +17,6 @@ export class LoginFormComponent implements OnInit {
   durationInSeconds = 5
   show_button: Boolean = false
   show_eye: Boolean = false
-  loading: boolean = false
 
   constructor (
     private UserService: UserService,
@@ -65,7 +64,6 @@ export class LoginFormComponent implements OnInit {
     form.reset()
   }
   formSubmit (form: NgForm) {
-    this.loading = true;
     const requestUser = this.createUser(form.value)
     if (form.value) {
       this.UserService.loginRequest(requestUser).subscribe(
@@ -75,11 +73,9 @@ export class LoginFormComponent implements OnInit {
           this.sharedService.isLoggin(true)
           this.checkPreviousPage()
           this.toast.showSuccess(message)
-          this.loading = false;
           form.reset()
         },
         error => {
-          console.log(error.error.message)
           this.toast.showError(error.error.message)
         }
       )
